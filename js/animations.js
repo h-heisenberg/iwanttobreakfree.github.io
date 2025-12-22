@@ -109,15 +109,7 @@ document.addEventListener('DOMContentLoaded', function() {
     });
     */
 
-    // Mobile menu smooth animation
-    const navbarToggler = document.querySelector('.navbar-toggler');
-    const navbarCollapse = document.querySelector('.navbar-collapse');
-
-    if (navbarToggler && navbarCollapse) {
-        navbarToggler.addEventListener('click', function() {
-            navbarCollapse.classList.toggle('show');
-        });
-    }
+    // Mobile menu handled by Bootstrap collapse - no custom toggle needed
 
     // Add ripple effect to buttons
     document.querySelectorAll('.btn').forEach(button => {
@@ -179,4 +171,23 @@ document.addEventListener('DOMContentLoaded', function() {
     document.querySelectorAll('.stats-bg').forEach(stat => {
         statsObserver.observe(stat);
     });
+
+    // Scroll to Top Button
+    const scrollToTopBtn = document.getElementById('scrollToTopBtn');
+    if (scrollToTopBtn) {
+        window.addEventListener('scroll', function() {
+            if (window.pageYOffset > 300) {
+                scrollToTopBtn.style.display = 'block';
+            } else {
+                scrollToTopBtn.style.display = 'none';
+            }
+        });
+
+        scrollToTopBtn.addEventListener('click', function() {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+    }
 });
